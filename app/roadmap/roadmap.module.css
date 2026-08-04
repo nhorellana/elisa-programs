@@ -1,0 +1,75 @@
+/* Timeline agosto 2026 → septiembre 2027 (handoff §5).
+   La posición actual se marca; nada se anima — eso es exclusivo de la regla de
+   tiempo del header. */
+
+.linea {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tramo {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--space-6);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.tramo:last-child {
+  border-bottom: 0;
+}
+
+.actual {
+  border-left: 4px solid var(--color-accent);
+  padding-left: var(--space-4);
+  margin-left: calc(var(--space-4) * -1);
+}
+
+.pasado .titulo,
+.pasado .detalle {
+  color: var(--color-tenue);
+}
+
+.titulo {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 17px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.marcaActual {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-top: var(--space-1);
+}
+
+.detalle {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.detalle li {
+  font-size: 14px;
+  padding: 3px 0;
+}
+
+.detalle li::before {
+  content: "—";
+  color: var(--color-tenue);
+  margin-right: var(--space-2);
+}
+
+@media (max-width: 640px) {
+  .tramo {
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+  }
+}

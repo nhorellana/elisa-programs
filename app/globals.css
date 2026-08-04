@@ -1,0 +1,234 @@
+/* Capa de override sobre Modernist.
+   styles/modernist.css es la copia intocada del design system; acá se redefine
+   solo lo que el handoff §7 exige y se agregan las pocas clases propias del
+   sitio. Regla: ningún hexadecimal suelto fuera de este archivo. */
+
+@import "../styles/modernist.css";
+
+:root {
+  /* ── Acento ──────────────────────────────────────────────────────────────
+     Modernist trae rojo #ec3013 como acento. El handoff §7 lo reserva para
+     bloqueantes y fechas críticas: "si aparece en más de tres lugares por
+     pantalla, deja de significar algo". Así que el acento pasa a azul pizarra
+     y el rojo baja a token de alerta, más abajo.
+
+     La rampa se deriva en OKLCH con tools/rampa-acento.mjs. El acento cae
+     entre los pasos 500 y 600 — la misma posición relativa que ocupa el rojo
+     dentro de la rampa de Modernist — para que :hover (600) y :active (700)
+     sigan oscureciendo. Copiar las luminosidades de Modernist tal cual no
+     funciona: el azul pizarra es bastante más oscuro que el rojo, el paso 600
+     quedaría MÁS CLARO que el acento y los estados se invertirían. */
+  --color-accent: #2f4858;
+  --color-accent-100: #f3f5f7;
+  --color-accent-200: #dadfe2;
+  --color-accent-300: #b0b9bf;
+  --color-accent-400: #768690;
+  --color-accent-500: #3c5362;
+  --color-accent-600: #253c4b;
+  --color-accent-700: #172a36;
+  --color-accent-800: #0f1c25;
+  --color-accent-900: #0a1216;
+
+  /* ── Alerta ──────────────────────────────────────────────────────────────
+     El rojo ladrillo del handoff. Recurso escaso: solo bloqueantes y fechas
+     críticas. No tiene rampa a propósito — no está para construir con él. */
+  --color-alerta: #9e3b2e;
+  --color-alerta-tinte: #ffebe6;
+
+  /* ── Instituciones ───────────────────────────────────────────────────────
+     Cuatro tonos derivados en OKLCH con tools/paleta-instituciones.mjs, sobre
+     una escala de luminosidad común: el paso base de las cuatro está en L 0.520
+     y comparte croma, así que ninguna institución pesa más que otra. Codificar
+     la institución es agrupación real, no decoración (handoff §5): UCL y KCL
+     tienen dos programas cada una y comparten reglas de postulación.
+
+     Para cambiarlos: npm run paleta, y se pegan los valores acá. */
+  --inst-ucl-tinte: #ddefff;
+  --inst-ucl-base: #216ea6;
+  --inst-ucl-oscuro: #0d3b5c;
+
+  --inst-kcl-tinte: #dff3e3;
+  --inst-kcl-base: #297b47;
+  --inst-kcl-oscuro: #124324;
+
+  --inst-reading-tinte: #faead9;
+  --inst-reading-base: #935a00;
+  --inst-reading-oscuro: #512f00;
+
+  --inst-greenwich-tinte: #f6e7f9;
+  --inst-greenwich-base: #875190;
+  --inst-greenwich-oscuro: #4a2a4f;
+
+  /* ── Tenue ───────────────────────────────────────────────────────────────
+     El --tenue del handoff: metadatos y campos por confirmar. Sale de la rampa
+     neutra que ya trae el sistema, no de un hexadecimal nuevo. */
+  --color-tenue: var(--color-neutral-600);
+
+  /* ── Tipografía ──────────────────────────────────────────────────────────
+     Archivo para display y cuerpo, fiel a Modernist. La mono es el tercer rol
+     que pide el handoff §7: TODA cifra del sitio va en ella. Las familias las
+     inyecta next/font desde app/fuentes.ts, auto-hospedadas — el sitio no le
+     pide nada a Google. */
+  --font-heading: var(--fuente-archivo), system-ui, sans-serif;
+  --font-body: var(--fuente-archivo), system-ui, sans-serif;
+  --font-mono: var(--fuente-mono), ui-monospace, monospace;
+
+  /* Ancho de lectura. Esto es texto y tablas, no un panel a pantalla completa. */
+  --ancho: 1100px;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Cifras
+   "Este proceso se decide en números exactos, y tratarlos tipográficamente
+   como tales le da al sitio su identidad" — handoff §7.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.cifra {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+  letter-spacing: -0.01em;
+}
+
+/* Un dato que la universidad todavía no confirmó. Se muestra, no se esconde:
+   saber qué no se sabe es parte del contenido (handoff §3). */
+.por-confirmar {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-style: italic;
+  color: var(--color-tenue);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Estructura
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.envoltura {
+  width: 100%;
+  max-width: var(--ancho);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+main.envoltura {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+
+/* Encabezado de sección: el título y la regla que lo separa del contenido.
+   En Modernist las reglas de 2px son las que organizan la página. */
+.seccion-titulo {
+  padding-bottom: var(--space-3);
+  border-bottom: 2px solid var(--color-divider);
+  margin-bottom: var(--space-6);
+}
+.seccion-titulo p {
+  margin: var(--space-2) 0 0;
+  max-width: 60ch;
+  color: var(--color-tenue);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Estados
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Marcar algo como hecho debe sentirse como tachar una línea en papel
+   (handoff §7). Sin celebración, sin color, sin porcentaje: una línea. */
+.hecho {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  color: var(--color-tenue);
+}
+
+/* Un bloqueante o una fecha crítica. Contar los usos por pantalla. */
+.alerta {
+  color: var(--color-alerta);
+}
+.tag-alerta {
+  background: var(--color-alerta-tinte);
+  color: var(--color-alerta);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Institución
+   Las clases .inst-* solo declaran las tres variables del tono. Quién las usa
+   —una regla vertical, un tag— lo decide la clase que las acompañe.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.inst-UCL {
+  --inst-base: var(--inst-ucl-base);
+  --inst-tinte: var(--inst-ucl-tinte);
+  --inst-oscuro: var(--inst-ucl-oscuro);
+}
+.inst-KCL {
+  --inst-base: var(--inst-kcl-base);
+  --inst-tinte: var(--inst-kcl-tinte);
+  --inst-oscuro: var(--inst-kcl-oscuro);
+}
+.inst-Reading {
+  --inst-base: var(--inst-reading-base);
+  --inst-tinte: var(--inst-reading-tinte);
+  --inst-oscuro: var(--inst-reading-oscuro);
+}
+.inst-Greenwich {
+  --inst-base: var(--inst-greenwich-base);
+  --inst-tinte: var(--inst-greenwich-tinte);
+  --inst-oscuro: var(--inst-greenwich-oscuro);
+}
+
+/* Regla vertical: marca la fila o la tarjeta de un programa. */
+.inst {
+  border-left: 4px solid var(--inst-base, var(--color-neutral-400));
+  padding-left: var(--space-3);
+}
+
+/* Tag con el nombre de la institución. */
+.tag-inst {
+  background: var(--inst-tinte, var(--color-neutral-100));
+  color: var(--inst-oscuro, var(--color-neutral-800));
+  font-weight: 600;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Piso de calidad
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* La regla de tiempo es lo único que se mueve en el sitio, y solo al cargar.
+   Bajo prefers-reduced-motion no se mueve nada. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Modernist fija h1 en 42px; a 375px de ancho eso desborda. */
+@media (max-width: 560px) {
+  h1 { font-size: 30px; }
+  h2 { font-size: 24px; }
+  h3 { font-size: 20px; }
+}
+
+/* Solo para lectores de pantalla. */
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}

@@ -1,0 +1,147 @@
+/* Panorama: lo que hay que saber en diez segundos (handoff §5). */
+
+.cuenta {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  padding-bottom: var(--space-6);
+  border-bottom: 2px solid var(--color-divider);
+  margin-bottom: var(--space-6);
+}
+
+.dias {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: clamp(56px, 14vw, 96px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--color-accent);
+}
+
+/* Reserva el alto del número antes de conocer la fecha del navegador, para que
+   el resto de la página no salte cuando aparece. */
+.diasVacio {
+  visibility: hidden;
+}
+
+.cuentaTexto {
+  max-width: 34ch;
+}
+
+.cuentaTexto p {
+  margin: 0;
+}
+
+.cuentaTexto strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 20px;
+  line-height: 1.2;
+  margin-bottom: var(--space-1);
+}
+
+.rejilla {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.bloque + .bloque {
+  margin-top: var(--space-6);
+}
+
+.bloqueTitulo {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 2px solid var(--color-divider);
+  margin-bottom: var(--space-3);
+}
+
+.bloqueTitulo h2 {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.bloqueTitulo a {
+  font-size: 12px;
+}
+
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.lista li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.lista li:last-child {
+  border-bottom: 0;
+}
+
+.itemTitulo {
+  font-size: 14px;
+}
+
+.itemDetalle {
+  display: block;
+  font-size: 12px;
+  color: var(--color-tenue);
+  margin-top: 2px;
+}
+
+.ahora {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ahora li {
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-divider);
+  font-size: 14px;
+}
+
+.ahora li:last-child {
+  border-bottom: 0;
+}
+
+.vacios {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.vaciosNumero {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 42px;
+  line-height: 1;
+}
+
+.vaciosNota {
+  font-size: 13px;
+  color: var(--color-tenue);
+  margin-top: var(--space-3);
+}
+
+@media (max-width: 760px) {
+  .rejilla {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+}

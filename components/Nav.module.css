@@ -1,0 +1,70 @@
+/* La regla de 2px cruza la pantalla completa —es lo que organiza la página en
+   Modernist— pero el contenido se alinea con el resto del sitio. Sin esto la
+   marca queda pegada al borde mientras el eje de la regla de tiempo arranca
+   indentado, y las dos franjas del header no calzan. */
+.barra {
+  border-bottom: 2px solid var(--color-divider);
+}
+
+.contenido {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding-block: var(--space-3);
+}
+
+.marca {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 18px;
+  margin-right: auto;
+  text-decoration: none;
+  color: inherit;
+}
+
+.marca small {
+  display: block;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-tenue);
+}
+
+.enlaces {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.enlaces a {
+  color: inherit;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 2px 0;
+  border-bottom: 2px solid transparent;
+}
+
+.enlaces a:hover {
+  color: var(--color-accent);
+}
+
+/* El estado activo es una regla de 2px bajo la etiqueta, no un relleno: en
+   Modernist son las reglas las que organizan. */
+.enlaces a[aria-current="page"] {
+  color: var(--color-accent);
+  border-bottom-color: var(--color-accent);
+}
+
+@media (max-width: 560px) {
+  .marca {
+    margin-right: 0;
+    width: 100%;
+  }
+  .enlaces {
+    gap: var(--space-2) var(--space-3);
+  }
+}

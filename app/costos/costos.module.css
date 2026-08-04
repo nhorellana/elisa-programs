@@ -1,0 +1,106 @@
+/* Comparación de escenarios, no una lista de precios (handoff §5). */
+
+.cambio {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  padding-bottom: var(--space-4);
+  border-bottom: 2px solid var(--color-divider);
+  margin-bottom: var(--space-6);
+}
+
+.campoCambio {
+  width: 180px;
+}
+
+.cambioNota {
+  font-size: 12px;
+  color: var(--color-tenue);
+  max-width: 44ch;
+  margin: 0 0 3px;
+}
+
+.marco {
+  overflow-x: auto;
+}
+
+.tabla {
+  min-width: 720px;
+}
+
+.tabla td {
+  vertical-align: top;
+}
+
+.programa {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 14px;
+  line-height: 1.25;
+  max-width: 22ch;
+}
+
+.duracion {
+  display: block;
+  font-size: 11px;
+  color: var(--color-tenue);
+  margin-top: 2px;
+}
+
+.enPesos {
+  display: block;
+  font-size: 11px;
+  color: var(--color-tenue);
+}
+
+.total {
+  font-weight: 600;
+}
+
+.bloque {
+  margin-top: var(--space-8);
+}
+
+.bloque h2 {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding-bottom: var(--space-2);
+  border-bottom: 2px solid var(--color-divider);
+  margin-bottom: var(--space-3);
+}
+
+.fijos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: 62ch;
+}
+
+.fijos li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-2) 0;
+  border-bottom: 1px solid var(--color-divider);
+  font-size: 14px;
+}
+
+.fijos li:last-child {
+  border-bottom: 0;
+}
+
+.fijoDetalle {
+  display: block;
+  font-size: 12px;
+  color: var(--color-tenue);
+  margin-top: 2px;
+}
+
+.nota {
+  font-size: 13px;
+  color: var(--color-tenue);
+  max-width: 62ch;
+  margin-top: var(--space-3);
+}

@@ -1,0 +1,188 @@
+/* Comparador + ficha. El corazón del sitio (handoff §5). */
+
+/* Seis columnas no caben en 375px. En vez de apilar la tabla y perder la
+   comparación —que es justamente para lo que existe— se deja desplazar en
+   horizontal dentro de su caja, sin que la página entera se mueva. */
+.marco {
+  overflow-x: auto;
+}
+
+.tabla {
+  min-width: 720px;
+}
+
+.tabla th button {
+  all: unset;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+}
+
+.tabla th button:hover {
+  color: var(--color-accent);
+}
+
+.tabla th button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.flecha {
+  font-size: 9px;
+}
+
+.filaPrograma {
+  cursor: pointer;
+}
+
+.filaPrograma td {
+  vertical-align: top;
+}
+
+/* `all: unset` deja el botón sin estilos propios para que la celda se vea como
+   texto, pero también borra el anillo de foco: se repone explícitamente acá,
+   porque el orden de carga entre el módulo y styles.css no está garantizado. */
+.botonNombre {
+  all: unset;
+  display: block;
+  cursor: pointer;
+}
+
+.botonNombre:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.botonNombre:hover .nombre {
+  color: var(--color-accent);
+}
+
+.nombre {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 14px;
+  line-height: 1.25;
+}
+
+.sigla {
+  color: var(--color-tenue);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  margin-left: 6px;
+}
+
+.sede {
+  display: block;
+  font-size: 11px;
+  color: var(--color-tenue);
+  margin-top: 2px;
+}
+
+.requisitoCelda {
+  max-width: 24ch;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.feeAnual {
+  display: block;
+  font-size: 11px;
+  color: var(--color-tenue);
+}
+
+/* — ficha — */
+
+.fichaFila td {
+  padding: 0;
+  background: var(--color-surface);
+}
+
+.ficha {
+  padding: var(--space-4);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-6);
+}
+
+.ficha h3 {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: 2px solid var(--color-divider);
+}
+
+.ficha p {
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.bloqueFicha + .bloqueFicha {
+  margin-top: var(--space-4);
+}
+
+.definiciones {
+  margin: 0;
+  font-size: 13px;
+}
+
+.definiciones dt {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-tenue);
+  margin-top: var(--space-3);
+}
+
+.definiciones dt:first-child {
+  margin-top: 0;
+}
+
+.definiciones dd {
+  margin: 2px 0 0;
+  line-height: 1.5;
+}
+
+.notas {
+  margin: 0;
+  padding-left: 1.1em;
+  font-size: 13px;
+}
+
+.notas li {
+  margin-bottom: var(--space-2);
+}
+
+.accionesFicha {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-top: var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-divider);
+}
+
+.descartados {
+  margin-top: var(--space-6);
+  padding-top: var(--space-3);
+  border-top: 2px solid var(--color-divider);
+  font-size: 13px;
+  color: var(--color-tenue);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+@media (max-width: 760px) {
+  .ficha {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+}

@@ -1,0 +1,144 @@
+/* La regla de tiempo: el elemento firma del sitio (handoff §7).
+   Franja persistente con el eje completo agosto 2026 → septiembre 2027, hoy
+   marcado y los hitos fijos anclados. Está en todas las secciones.
+
+   Es lo único animado del sitio: al cargar, el marcador de hoy se desliza hasta
+   su posición. Nada más se mueve. */
+
+.franja {
+  border-bottom: 2px solid var(--color-divider);
+  background: var(--color-bg);
+}
+
+/* Solo padding vertical: el horizontal lo pone .envoltura, que es lo que alinea
+   esta franja con la nav y con el contenido de cada sección.
+
+   El padding de arriba es generoso porque el marcador de hoy sobresale 12px por
+   encima del eje, y hoy —agosto 2026— cae al 0,7% del eje, o sea pegado al
+   borde izquierdo, justo debajo de la marca de la nav. Con poco margen las dos
+   franjas del header se pisan. */
+.contenido {
+  padding-block: var(--space-8) var(--space-3);
+}
+
+.eje {
+  position: relative;
+  height: 2px;
+  background: var(--color-divider);
+  margin: 0 0 var(--space-2);
+}
+
+/* — hitos fijos — */
+
+.ancla {
+  position: absolute;
+  top: -4px;
+  width: 2px;
+  height: 10px;
+  background: var(--color-neutral-700);
+  transform: translateX(-1px);
+}
+
+.anclaCritica {
+  background: var(--color-alerta);
+  height: 14px;
+  top: -6px;
+}
+
+.etiquetas {
+  position: relative;
+  height: 32px;
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-tenue);
+}
+
+.etiqueta {
+  position: absolute;
+  top: 0;
+  white-space: nowrap;
+  transform: translateX(-50%);
+}
+
+/* Las anclas se alternan en dos filas. Octubre y noviembre caen a 26 días una
+   de otra sobre un eje de catorce meses: centradas en la misma fila se pisan sí
+   o sí, por corto que sea el texto. Alternando, dos etiquetas vecinas nunca
+   comparten fila, y las que sí la comparten están a meses de distancia. */
+.filaBaja {
+  top: 15px;
+}
+
+/* La primera y la última se alinean a los bordes para no salirse de la caja. */
+.etiqueta:first-child {
+  transform: none;
+}
+.etiqueta:last-child {
+  transform: translateX(-100%);
+}
+
+.etiquetaCritica {
+  color: var(--color-alerta);
+}
+
+/* — hoy — */
+
+/* Lo único animado del sitio: al cargar, el marcador de hoy se desliza hasta su
+   posición. Va como keyframe y no como transición para no necesitar un segundo
+   render en la posición de partida. Bajo prefers-reduced-motion el CSS global
+   reduce la duración a nada y el marcador simplemente aparece en su sitio. */
+.hoy {
+  position: absolute;
+  top: -8px;
+  width: 2px;
+  height: 18px;
+  background: var(--color-accent);
+  transform: translateX(-1px);
+  left: var(--posicion);
+  animation: deslizar 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes deslizar {
+  from {
+    left: 0%;
+  }
+  to {
+    left: var(--posicion);
+  }
+}
+
+/* El cuadrado que remata el marcador. Sube 4px más que la barra: entre los dos,
+   hoy sobresale 12px sobre el eje — el número del que sale el padding de
+   .contenido. */
+.hoy::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -3px;
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent);
+}
+
+.pie {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: 11px;
+  color: var(--color-tenue);
+}
+
+.hoyTexto {
+  color: var(--color-accent);
+}
+
+@media (max-width: 560px) {
+  .contenido {
+    padding-block: var(--space-3) var(--space-2);
+  }
+  /* A este ancho las etiquetas de los hitos se pisan entre sí. Las marcas del
+     eje quedan; el detalle está en /roadmap. */
+  .etiquetas {
+    display: none;
+  }
+}

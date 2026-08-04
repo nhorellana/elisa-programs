@@ -1,0 +1,67 @@
+/* Los vacíos, con campo para pegar la respuesta cuando llegue (handoff §5). */
+
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--color-divider);
+}
+
+.item:last-child {
+  border-bottom: 0;
+}
+
+.encabezado {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.pregunta {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  font-size: 17px;
+  line-height: 1.25;
+  margin: 0;
+  max-width: 58ch;
+}
+
+.porQue {
+  font-size: 13px;
+  color: var(--color-tenue);
+  margin: var(--space-2) 0 0;
+  max-width: 62ch;
+}
+
+.afecta {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  margin-top: var(--space-2);
+}
+
+.campo {
+  margin-top: var(--space-3);
+  max-width: 62ch;
+}
+
+.contador {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  padding-bottom: var(--space-4);
+  border-bottom: 2px solid var(--color-divider);
+  margin-bottom: var(--space-2);
+}
+
+.contadorNumero {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 42px;
+  line-height: 1;
+}
