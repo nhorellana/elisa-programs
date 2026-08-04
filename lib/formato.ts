@@ -3,9 +3,13 @@ import type { Programa } from "@/data/tipos";
 // Formato de cifras y fechas. Todo lo que devuelve algo numérico se renderiza
 // dentro de <Cifra>, que le pone la monoespaciada (handoff §7).
 
+// `narrowSymbol` es lo que da "£31.650". Sin eso, es-CL escribe el código de la
+// moneda —"GBP 31.650"— que ocupa más, se lee peor y no es como se habla de
+// estos montos en ningún lado.
 const gbp = new Intl.NumberFormat("es-CL", {
   style: "currency",
   currency: "GBP",
+  currencyDisplay: "narrowSymbol",
   maximumFractionDigits: 0,
 });
 

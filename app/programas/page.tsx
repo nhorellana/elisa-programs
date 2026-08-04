@@ -196,7 +196,10 @@ function FilaPrograma({
           ) : (
             <>
               <Cifra>{formatoGBP(total)}</Cifra>
-              {p.feePorAnio && (
+              {/* El desglose por año solo aporta si el programa dura más de uno.
+                  En Greenwich, que cobra por año y dura doce meses, repetiría la
+                  misma cifra dos veces. */}
+              {p.feePorAnio && p.duracionMeses > 12 && (
                 <span className={estilos.feeAnual}>
                   <Cifra>{formatoGBP(p.feeOverseasGBP as number)}</Cifra> por año
                 </span>
