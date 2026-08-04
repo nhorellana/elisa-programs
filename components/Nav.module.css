@@ -33,11 +33,28 @@
   color: var(--color-tenue);
 }
 
+/* Una sola línea, siempre, con desplazamiento horizontal si no caben.
+   Envolviendo a dos líneas la segunda se desbordaba sobre la regla de tiempo, y
+   además partía en dos una lista que se lee como una sola barra de secciones.
+   `min-width: 0` es lo que permite que el bloque se encoja dentro del flex en
+   vez de empujar la caja. */
 .enlaces {
   display: flex;
   gap: var(--space-3);
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
+  min-width: 0;
+  overflow-x: auto;
+  /* `overflow-x: auto` vuelve el eje vertical un contenedor de scroll también,
+     así que se le da aire al subrayado de 2px de la sección activa. */
+  padding-bottom: 2px;
+  /* La barra de scroll se oculta: en pantallas anchas no aparece nunca, y en
+     táctil la sección cortada en el borde ya avisa que la lista sigue. */
+  scrollbar-width: none;
+}
+
+.enlaces::-webkit-scrollbar {
+  display: none;
 }
 
 .enlaces a {
@@ -46,6 +63,9 @@
   font-size: 14px;
   padding: 2px 0;
   border-bottom: 2px solid transparent;
+  /* Sin esto los nombres se parten por la mitad al encogerse la barra. */
+  flex: none;
+  white-space: nowrap;
 }
 
 .enlaces a:hover {
@@ -60,11 +80,26 @@
 }
 
 @media (max-width: 560px) {
+  .contenido {
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  /* La marca ocupa su propia línea y las secciones quedan en la de abajo. */
   .marca {
     margin-right: 0;
     width: 100%;
   }
+
   .enlaces {
-    gap: var(--space-2) var(--space-3);
+    width: 100%;
+    gap: var(--space-4);
+    /* Sangra hasta los bordes de la pantalla: así la última sección se corta
+       contra el borde y se entiende que la lista sigue, en vez de terminar
+       prolijamente dentro del margen como si no hubiera nada más. */
+    margin-inline: calc(var(--space-4) * -1);
+    padding-inline: var(--space-4);
+    /* Aire para que el subrayado de la sección activa no lo coma el scroll. */
+    padding-bottom: 2px;
   }
 }

@@ -133,8 +133,11 @@
 }
 
 @media (max-width: 560px) {
+  /* Ojo: el marcador de hoy sobresale 12px sobre el eje y en agosto 2026 cae
+     pegado al borde izquierdo, debajo de la marca. Bajar este padding a
+     var(--space-3) deja cero holgura y las dos franjas del header se pisan. */
   .contenido {
-    padding-block: var(--space-3) var(--space-2);
+    padding-block: var(--space-6) var(--space-2);
   }
   /* A este ancho las etiquetas de los hitos se pisan entre sí. Las marcas del
      eje quedan; el detalle está en /roadmap. */
