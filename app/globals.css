@@ -111,16 +111,24 @@ body {
    Estructura
    ══════════════════════════════════════════════════════════════════════════ */
 
+/* Ojo: `padding-inline`, NUNCA el atajo `padding: 0 var(--space-4)`.
+   El atajo fija también padding-top y padding-bottom en 0, y como .envoltura
+   comparte hoja y especificidad con los módulos CSS que la acompañan en el
+   mismo elemento (la nav, la regla de tiempo, el pie), les anulaba en silencio
+   todo el padding-block. El header terminaba con las dos franjas encimadas y
+   subir los valores no cambiaba nada, porque el atajo los ganaba igual.
+
+   Esta clase solo se ocupa del ancho y del margen horizontal. El espaciado
+   vertical lo decide cada quien. */
 .envoltura {
   width: 100%;
   max-width: var(--ancho);
   margin: 0 auto;
-  padding: 0 var(--space-4);
+  padding-inline: var(--space-4);
 }
 
 main.envoltura {
-  padding-top: var(--space-8);
-  padding-bottom: var(--space-8);
+  padding-block: var(--space-8);
 }
 
 /* Encabezado de sección: el título y la regla que lo separa del contenido.
