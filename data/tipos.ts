@@ -50,6 +50,21 @@ export type Programa = {
     asignadoPorPrograma: boolean | null;
     descripcion: string;
   };
+  /**
+   * La ventana de postulación. Las cuatro universidades la manejan distinto y
+   * solo UCL publica fechas: KCL abre "a mediados de octubre" sin decir el día,
+   * y Reading y Greenwich no publican ni apertura ni cierre porque evalúan
+   * rolling. De ahí que las dos fechas sean nullables y la nota obligatoria —
+   * en cuatro de los seis programas la nota es todo lo que hay.
+   */
+  postulacion: {
+    /** ISO. null = la universidad no publica fecha de apertura. */
+    abre: string | null;
+    /** ISO. null = no hay cierre publicado, o la evaluación es rolling. */
+    cierra: string | null;
+    /** Cómo funciona el proceso. Siempre presente, incluso sin fechas. */
+    nota: string;
+  };
   /** 5 = máxima carga clínica supervisada. */
   pesoPractico: 1 | 2 | 3 | 4 | 5;
   /** Probabilidad de no obtener oferta. */

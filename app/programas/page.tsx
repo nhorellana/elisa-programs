@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { Cifra, PorConfirmar } from "@/components/Cifra";
 import { programas } from "@/data/programas";
 import type { Programa } from "@/data/tipos";
-import { duracionTexto, feeTotal, formatoGBP } from "@/lib/formato";
+import { duracionTexto, feeTotal, formatoFecha, formatoGBP } from "@/lib/formato";
 import { useEstado } from "@/lib/useEstado";
 import estilos from "./programas.module.css";
 
@@ -253,6 +253,29 @@ function FilaPrograma({
                       )}
                     </dd>
                   </dl>
+                </div>
+
+                <div className={estilos.bloqueFicha}>
+                  <h3>Postulación</h3>
+                  <dl className={estilos.definiciones}>
+                    <dt>Abre</dt>
+                    <dd>
+                      {p.postulacion.abre === null ? (
+                        <PorConfirmar />
+                      ) : (
+                        <Cifra>{formatoFecha(p.postulacion.abre)}</Cifra>
+                      )}
+                    </dd>
+                    <dt>Cierra</dt>
+                    <dd>
+                      {p.postulacion.cierra === null ? (
+                        <PorConfirmar />
+                      ) : (
+                        <Cifra>{formatoFecha(p.postulacion.cierra)}</Cifra>
+                      )}
+                    </dd>
+                  </dl>
+                  <p>{p.postulacion.nota}</p>
                 </div>
 
                 {p.notas.length > 0 && (

@@ -6,8 +6,8 @@ import type { Pregunta } from "./tipos";
 // El contador de vacíos sin resolver del Panorama sale de acá.
 
 // Resueltas y sacadas de la lista, porque ya no son vacíos: el fee de Reading
-// (£31.650) y el de Greenwich (£17.450) quedaron confirmados y viven en
-// data/programas.ts. Si alguna se reabre, vuelve acá.
+// (£32.850 para 2027/28) y el de Greenwich (£18.700) quedaron confirmados y
+// viven en data/programas.ts. Si alguna se reabre, vuelve acá.
 export const preguntas: Pregunta[] = [
   {
     id: "quien-asigna-placement",

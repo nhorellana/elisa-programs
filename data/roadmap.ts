@@ -41,6 +41,7 @@ export const hitos: Hito[] = [
     detalle: [
       "Rendir IELTS, con margen para repetir",
       "20 de octubre: abren postulaciones UCL",
+      "Mediados de octubre: abren postulaciones KCL, sin día anunciado",
     ],
   },
   {
